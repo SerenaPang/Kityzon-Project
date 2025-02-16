@@ -1,4 +1,4 @@
-package com.kittyzone.app.kittyzone;
+package com.kittyzone.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class KittyzoneApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KittyzoneApplication.class, args);
 	}
-
 }
