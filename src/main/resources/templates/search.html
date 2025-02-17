@@ -1,9 +1,89 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Welcome to Kitty Zone</title>
 
+<head>
+    <title>Welcom to Kity Zone</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+    <script src="/js/script.js"></script>
 </head>
-<body>
-   <blockquote>Size in Construction</blockquote>
-</body>
+
+<!-- Navigation Bar -->
+<nav>
+    <div id="home">
+        <div class="customer_service">
+            Silver
+            <div class="contact_info">
+                <img src="/images//envelope.png" alt="Custome Service Mail" />
+                silver@kitymail.com
+            </div>
+            <div style="clear:both;"></div>
+            <div class="contact_info">
+                <img src="/images//phone.png" alt="Customer Service Phone" />
+                +652 KITTY ZONE
+            </div>
+        </div>
+</nav>
+
+<!-- Login -->
+<div class="topdiv">
+    <a class="topmenu" href="#log-in">Log In</a>
+</div>
+
+<!-- About Kityzon-->
+<section id="about_kityzon" class="container">
+    <div>
+        <img src="/images//waving-hand.gif" class="profile_image" />
+    </div>
+
+    <div>
+        <h1>
+            Welcom to KityZon! <img src="/images//blowing-kisses.gif" width="60px" />
+        </h1>
+        <p>
+            Kityzon is a international shopping platform.
+            Here you can find various kind of international products.
+            Our product quality is promising and shipping is fast.
+            Thank you for using Kityzon and hope you enjoy shopping with us!
+        </p>
+    </div>
+</section>
+
+<div class="search_container">
+    <h1>Search Products</h1>
+    <!-- Input field to add new search -->
+    <input  id="search_bar" type="text" placeholder="Add a new search">
+
+    <!-- Button to add a new search to the list -->
+    <button class="search_btn" onclick="searchProduct()">Search</button>
+</div>
+
+<table class="products">
+    <tr>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><a href="Anti Tear Exercise Yoga Mat">Anti Tear Exercise Yoga Mat</a></td>
+        <td>Pinklim </td>
+        <td>$21.98</td>
+        <td>Yoga description</td>
+        <td><a href="Add to Cart">Add to Cart</a></td>
+    </tr>
+    <tr>
+        <td><a href="Eco Friendly Non Slip Yoga Mat">Eco Friendly Non Slip Yoga Mat</a></td>
+        <td>Ambesonne </td>
+        <td>$14.99</td>
+        <td>Yoga description</td>
+        <td><a href="Add to Cart">Add to Cart</a></td>
+    </tr>
+    <tr>
+        <td><a href="All Purpose 1/4 Inch High Density Yoga Mat">All Purpose 1/4 Inch High Density Yoga Mat</a></td>
+        <td>DoMouse </td>
+        <td>$24.99</td>
+        <td>Yoga description</td>
+        <td><a href="Add to Cart">Add to Cart</a></td>
+    </tr>
+    </body>
 </html>
