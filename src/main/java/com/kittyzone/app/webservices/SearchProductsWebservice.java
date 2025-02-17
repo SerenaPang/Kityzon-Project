@@ -1,7 +1,5 @@
 package com.kittyzone.app.webservices;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,8 @@ public class SearchProductsWebservice {
 
 	// curl -X GET "http://localhost:8080/searchByQuery?query=myproduct"
 	@GetMapping("/searchByQuery")
-	public ResponseEntity<List<Product>> searchByQuery(@RequestParam(value = "query", defaultValue = "nothing") String query) {
+	public ResponseEntity<List<Product>> searchByQuery(
+			@RequestParam(value = "query", defaultValue = "nothing") String query) {
 		System.out.println("SearchProductsWebservice.searchByQuery() " + query);
 		List<Product> products = productService.searchBySearchString(query);
 
