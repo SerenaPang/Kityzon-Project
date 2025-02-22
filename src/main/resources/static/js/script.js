@@ -73,7 +73,7 @@ function renderProducts(products) {
         insertTableField(row, product.description);
         insertTableField(row, product.brand);
         insertTableField(row, product.price);
-        insertTableField(row, "Add to cart");
+        insertAddToCartButton(row, product.id);
 
         // add the row to the end of the table body
         tbl.appendChild(row);
@@ -81,6 +81,17 @@ function renderProducts(products) {
 
     // appends <table> into <body>
     resultsDiv.appendChild(tbl);
+}
+
+function insertAddToCartButton(row, productId) {
+    let button = document.createElement("input");
+    button.type = "button";
+    button.value = "Add to cart";
+    button.onclick = function () {
+        // TODO: Call webservice and add product.
+        alert("Add to cart " + productId);
+    };
+    row.appendChild(button);
 }
 
 function insertTableHeader(row, text) {
