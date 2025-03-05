@@ -1,4 +1,9 @@
 
+/* Contains the list of products */
+let cart = [];
+
+let currentProducts = [];
+
 function searchProduct() {
     let productName = document.getElementById("search_bar").value;
 
@@ -35,6 +40,7 @@ function searchProductAjaxCall(productName) {
         .then((text) => {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
             const products = JSON.parse(text);
+            currentProducts = products;
             renderProducts(products);
         })
         // Catch any errors that might happen, and display a message
@@ -78,7 +84,6 @@ function renderProducts(products) {
         // add the row to the end of the table body
         tbl.appendChild(row);
     }
-
     // appends <table> into <body>
     resultsDiv.appendChild(tbl);
 }
@@ -88,8 +93,9 @@ function insertAddToCartButton(row, productId) {
     button.type = "button";
     button.value = "Add to cart";
     button.onclick = function () {
-        // TODO: Call webservice and add product.
         alert("Add to cart " + productId);
+        addProductToCart(productId)
+
     };
     row.appendChild(button);
 }
@@ -106,4 +112,18 @@ function insertTableField(row, text) {
     let cellText = document.createTextNode(text);
     cell.appendChild(cellText);
     row.appendChild(cell);
+}
+
+function addProductToCart(productId) {
+    let product;
+
+    for (let i = 0; i < currentProducts.length ; i++) {
+        if (productId == currentProducts[i].id) {
+            product = currentProducts[i];
+        }
+    }
+
+    // TODO: Make AJAX call to update the Cart in the server.
+
+    cart.push(product);
 }
