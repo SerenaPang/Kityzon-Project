@@ -1,7 +1,8 @@
 
-/* Contains the list of products */
+/* List of products in the cart. */
 let cart = [];
 
+/* List of product returned by the search query. */
 let currentProducts = [];
 
 function searchProduct() {
@@ -52,7 +53,7 @@ function searchProductAjaxCall(productName) {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
 function renderProducts(products) {
-    // creates a <table> element and a <tbody> element
+    // creates a <table> element.
     const tbl = document.createElement("table");
     const resultsDiv = document.getElementById("results");
 
@@ -75,11 +76,12 @@ function renderProducts(products) {
         // creates a table row
         const row = document.createElement("tr");
 
-        insertTableField(row, product.name);
-        insertTableField(row, product.description);
-        insertTableField(row, product.brand);
-        insertTableField(row, product.price);
+        insertTableData(row, product.name);
+        insertTableData(row, product.description);
+        insertTableData(row, product.brand);
+        insertTableData(row, product.price);
         insertAddToCartButton(row, product.id);
+        // TODO: Insert <input type="text" ...> here for quantity.
 
         // add the row to the end of the table body
         tbl.appendChild(row);
@@ -92,10 +94,9 @@ function insertAddToCartButton(row, productId) {
     let button = document.createElement("input");
     button.type = "button";
     button.value = "Add to cart";
+    // Add handler for the onclick event.
     button.onclick = function () {
-        alert("Add to cart " + productId);
         addProductToCart(productId)
-
     };
     row.appendChild(button);
 }
@@ -107,7 +108,7 @@ function insertTableHeader(row, text) {
     row.appendChild(cell);
 }
 
-function insertTableField(row, text) {
+function insertTableData(row, text) {
     let cell = document.createElement("td");
     let cellText = document.createTextNode(text);
     cell.appendChild(cellText);
@@ -120,10 +121,50 @@ function addProductToCart(productId) {
     for (let i = 0; i < currentProducts.length ; i++) {
         if (productId == currentProducts[i].id) {
             product = currentProducts[i];
+            break;
         }
     }
+    // TODO: Extract quantity of the input text.
+    // product.quantity = (value extracted from input text)
 
     // TODO: Make AJAX call to update the Cart in the server.
-
     cart.push(product);
+    renderCart();
+}
+
+/* Renders the content of the cart */
+function renderCart() {
+    // creates a <table> element.
+    const tbl = document.createElement("table");
+    const myCartDiv = document.getElementById("mycart");
+
+    // Remove Previous elements in the div with id "mycart".
+    while (myCartDiv.firstChild) {
+        myCartDiv.removeChild(myCartDiv.firstChild);
+    }
+
+    const firstRow = document.createElement("tr");
+    insertTableHeader(firstRow, "Name");
+    insertTableHeader(firstRow, "Price");
+    insertTableHeader(firstRow, "Quantity");
+    tbl.appendChild(firstRow);
+
+    // creating the table data
+    for (let i = 0; i < cart.length; i++) {
+        let product = cart[i];
+        // creates a table row
+        const row = document.createElement("tr");
+
+        insertTableData(row, product.name);
+        insertTableData(row, product.price);
+        // TODO: Get the quantity from input box
+        insertTableData(row, 1);
+
+        // TODO: Add remove button.
+
+        // add the row to the end of the table.
+        tbl.appendChild(row);
+    }
+    // appends <table> into <body>
+    myCartDiv.appendChild(tbl);
 }
